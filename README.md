@@ -1,1 +1,1 @@
-# cps353-2019-fifteen-tuck
+# Starter code for CPS 353 Assignment 6: Fifteen Puzzle
