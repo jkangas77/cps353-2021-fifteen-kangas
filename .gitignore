@@ -1,0 +1,11 @@
+# .gitignore: Files to keep OUT of this repo
+
+# Mac files
+.DS_Store
+
+# Mac + Google Drive files
+Icon?
+
+# Emacs backup and temp files
+*~
+\#*\#
