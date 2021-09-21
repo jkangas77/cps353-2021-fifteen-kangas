@@ -1,0 +1,42 @@
+#puzzlearea {
+    margin: auto;
+    width: calc(20em + 4px);
+    height: calc(20em + 4px);
+    border: 4px red solid;
+    position: relative;
+}
+
+#puzzlearea > div {
+    width: calc(5em - 0px);
+    height: calc(5em - 0px);
+    border: 2px black solid;
+    position: absolute;
+    display: block;
+    background-image: url("background.jpg");
+    background-size: 400%;
+}
+
+.row0 {
+    top: 0em;
+} .row1 {
+    top: 5em;
+} .row2 {
+    top: 10em;
+} .row3 {
+    top: 15em;
+    background-position-y: -15em;
+}
+
+.col0 {
+    left: 0em;
+    background-position-x: 0%;
+} .col1 {
+    left: 5em;
+    background-position-x: -5em;
+} .col2 {
+    left: 10em;
+    background-position-x: -10em;
+} .col3 {
+    left: 15em;
+    background-position-x: -15em;
+}
