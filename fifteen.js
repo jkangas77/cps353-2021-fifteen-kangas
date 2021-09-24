@@ -1,12 +1,5 @@
 "use strict;"
 
-
-class Game {
-    constructor() {
-
-    }
-}
-
 class Tiles {
     constructor() {
         this.board = new Array();
@@ -18,7 +11,7 @@ class Tiles {
     }
     async Shuffle() {
         for (let i = 0; i < 100; i++) {
-            await new Promise(resolve => setTimeout(resolve, 10));
+            //await new Promise(resolve => setTimeout(resolve, 10)); //Bring this back if you want animations
             this.AutoShift();
             this.Display();
         }
@@ -26,7 +19,7 @@ class Tiles {
     Instantiate() {
         let tCounter = 0;
         for (let t of this.board) {
-            t.style = "background-position-y: " + (-5*(tCounter%4))+ "em; background-position-x: " + (-5*(Math.floor(tCounter/4)))+ "em;"
+            t.style = "background-position-y: " + (-100*(tCounter%4))+ "px; background-position-x: " + (-100*(Math.floor(tCounter/4)))+ "px;"
             tCounter++;
         }
     }
@@ -42,19 +35,33 @@ class Tiles {
             }
             counter++;
         }
+        this.CheckHoverables()
     }
     CheckShift(num) { //Checks to see if the tile has an empty space nearby
         console.log("Checking " + num)
         let emptySpot = this.board.indexOf(1);
-        if (num % 4 > 0 && num-1 == emptySpot
-            || num % 4 < 3 && num+1 == emptySpot 
-            || Math.floor(num/4) > 0 && num-4 == emptySpot
-            || Math.floor(num/4) < 3 && num+4 == emptySpot) {
+        if (this.CheckNextToEmpty(num)) {
                 console.log("valid")
                 this.board[emptySpot] = this.board[num];
                 this.board[num] = 1;
         }
         this.Display();
+    }
+    CheckHoverables() { //Add and remove hoverable class, should only be run from Display()  
+        for (let num = 0; num < this.board.length; num++) {
+            if (this.CheckNextToEmpty(num)) {
+                    this.board[num].className += " hoverable"
+            }
+        }
+    }
+    CheckNextToEmpty(num) {
+        let emptySpot = this.board.indexOf(1);
+        if (num % 4 > 0 && num-1 == emptySpot
+                || num % 4 < 3 && num+1 == emptySpot 
+                || Math.floor(num/4) > 0 && num-4 == emptySpot
+                || Math.floor(num/4) < 3 && num+4 == emptySpot)
+                return true;
+        return false;
     }
     AutoShift() { //Find spots the empty spot can swap with - used for shuffling
         let availableTiles = new Array();
@@ -67,7 +74,6 @@ class Tiles {
             availableTiles.push (emptySpot - 1)
         if (emptySpot%4 < 3)
             availableTiles.push (emptySpot + 1)
-        console.log(availableTiles)
         let nextP = Math.round(Math.random() * (availableTiles.length-1))
         let nextPlace = availableTiles[nextP]
         this.board[emptySpot] = this.board[nextPlace];
@@ -82,13 +88,12 @@ function ShiftTile(num) {
     tiles.CheckShift(num);
 }
 
-async function StartGame() {
-    //Wait so that the html loads, and we can access it
-    await new Promise(resolve => setTimeout(resolve, 100));
-    game = new Game();
+//Wait so that the html loads, and we can access it
+window.onload = function () {
     tiles = new Tiles();
     tiles.Display();
-    tiles.Shuffle();
+    document.getElementById("shufflebutton").onclick = function() {tiles.Shuffle()}
+    //tiles.Shuffle();
 }
 
 StartGame();

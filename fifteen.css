@@ -1,42 +1,55 @@
+body {
+    font-family: cursive;
+    font-size: 14pt;
+    text-align: center;
+    margin: auto;
+    position: relative;
+}
+
 #puzzlearea {
     margin: auto;
-    width: calc(20em + 4px);
-    height: calc(20em + 4px);
-    border: 4px red solid;
+    width: 400px;
+    height: 400px;
     position: relative;
 }
 
 #puzzlearea > div {
-    width: calc(5em - 0px);
-    height: calc(5em - 0px);
-    border: 2px black solid;
+    width: 90px;
+    height: 90px;
+    border: 5px black solid;
     position: absolute;
     display: block;
     background-image: url("background.jpg");
-    background-size: 400%;
+    background-size: 440%;
+    font-size: 40pt;
+    text-align: center;
+}
+
+.hoverable {
+    border-color: black;
+    color: black;
+}
+.hoverable:hover {
+    border-color: red !important;
+    color: red;
 }
 
 .row0 {
-    top: 0em;
+    top: 0px;
 } .row1 {
-    top: 5em;
+    top: 100px;
 } .row2 {
-    top: 10em;
+    top: 200px;
 } .row3 {
-    top: 15em;
-    background-position-y: -15em;
+    top: 300px;
 }
 
 .col0 {
-    left: 0em;
-    background-position-x: 0%;
+    left: 0px;
 } .col1 {
-    left: 5em;
-    background-position-x: -5em;
+    left: 100px;
 } .col2 {
-    left: 10em;
-    background-position-x: -10em;
+    left: 200px;
 } .col3 {
-    left: 15em;
-    background-position-x: -15em;
+    left: 300px;
 }
