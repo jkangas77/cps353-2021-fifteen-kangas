@@ -19,7 +19,7 @@ class Tiles {
     Instantiate() {
         let tCounter = 0;
         for (let t of this.board) {
-            t.style = "background-position-y: " + (-100*(tCounter%4))+ "px; background-position-x: " + (-100*(Math.floor(tCounter/4)))+ "px;"
+            t.style = "background-position-x: " + (-100*(tCounter%4))+ "px; background-position-y: " + (-100*(Math.floor(tCounter/4)))+ "px;"
             tCounter++;
         }
     }
@@ -27,8 +27,8 @@ class Tiles {
         let counter = 0;
         for(let b of this.board) {
             if (b != 1) { //Ignore the null, as I'm using it for the space
-                let rString = "row" + counter%4;
-                let cString = "col" + Math.floor(counter/4);
+                let rString = "col" + counter%4;
+                let cString = "row" + Math.floor(counter/4);
                 b.className = rString + " " + cString;
                 let ctmp = counter;
                 b.onclick = function () {eval(ShiftTile(ctmp))};
